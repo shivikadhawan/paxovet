@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const email = document.getElementById('login-email').value;
   const name  = document.getElementById('login-name').value;
   const phone = document.getElementById('login-phone').value;
-  const role = 'customer';
   PaxoAuth.login(email, name, phone, role);
 });
   }
