@@ -36,9 +36,13 @@ function loginUser(email, name = '', phone = '', requestedRole = 'customer') {
 
   // Auto-detect role for default admin account
   let role = requestedRole;
-  if (email.includes('admin')) {
-    role = 'admin';
-  }
+  // ✅ Only this exact email gets admin access
+const ADMIN_EMAIL = 'petslifelinecentre@gmail.com'; // ← put your real email here
+
+let role = 'customer';
+if (email === ADMIN_EMAIL) {
+  role = 'admin';
+}
 
   if (!user) {
     // Sign Up new customer
