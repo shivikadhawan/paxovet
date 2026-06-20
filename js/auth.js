@@ -1,7 +1,7 @@
 // ─── EmailJS OTP Config ───────────────────────────────
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // from EmailJS dashboard
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+const EMAILJS_PUBLIC_KEY  = 'NfSOV1O5-QnE0Zvq3';   // from EmailJS dashboard
+const EMAILJS_SERVICE_ID  = 'service_yxinza2';
+const EMAILJS_TEMPLATE_ID = 'template_it69spp';
 
 emailjs.init(EMAILJS_PUBLIC_KEY);
 
