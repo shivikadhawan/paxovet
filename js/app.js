@@ -10,14 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('login-form');
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('login-email').value;
-      const name = document.getElementById('login-name').value;
-      const phone = document.getElementById('login-phone').value;
-      
-      const role = email.toLowerCase().includes('admin') ? 'admin' : 'customer';
-      PaxoAuth.login(email, name, phone, role);
-    });
+  e.preventDefault();
+  const enteredCode = document.getElementById('otp-input').value.trim();
+  if (!PaxoAuth.verifyOTP(enteredCode)) return; // Stop if OTP wrong/expired
+
+  const email = document.getElementById('login-email').value;
+  const name  = document.getElementById('login-name').value;
+  const phone = document.getElementById('login-phone').value;
+  const role  = email.toLowerCase().includes('admin') ? 'admin' : 'customer';
+  PaxoAuth.login(email, name, phone, role);
+});
   }
 
   const logoutBtn = document.getElementById('nav-logout-btn');
