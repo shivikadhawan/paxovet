@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PaxoVet - Premium Pet Clinic & Store</title>
+  <meta name="description" content="Premium pet healthcare consulting, booking, and e-commerce shopping experience for your furry family.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       Sticky Header Navbar
+       ========================================== -->
+  <header class="main-header" aria-label="Main Navigation">
+    <div class="logo" onclick="window.location.hash = '#/'" role="link" tabindex="0">
+      <span>🐾 PaxoVet</span>
+    </div>
+    
+    <nav class="nav-links" aria-label="Sections nav">
+      <a href="#/" class="nav-link active">Home</a>
+      <a href="#/customer/pets" class="nav-link" id="nav-customer-link" style="display: none;">My Dashboard</a>
+      <a href="#/admin" class="nav-link" id="nav-admin-link" style="display: none;">Admin Console</a>
+    </nav>
+
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <!-- Admin Notifications Bell -->
+      <div id="nav-notif-container" style="display: none; position: relative;">
+        <button class="qty-btn" aria-label="View Alerts" onclick="PaxoAdmin.toggleNotificationDrawer()" style="width: 38px; height: 38px; font-size: 16px;">
+          🔔<span id="notif-badge-count" class="badge badge-danger" style="position: absolute; top: -4px; right: -4px; font-size: 9px; padding: 2px 5px; display: none;">0</span>
+        </button>
+      </div>
+
+      <!-- Sign In Button -->
+      <button class="auth-nav-btn" id="nav-login-btn" onclick="PaxoAuth.showLoginModal()">Sign In</button>
+      
+      <!-- User Profile Badge -->
+      <div class="user-profile-nav" id="nav-user-btn">
+        <div class="user-avatar-placeholder" id="nav-user-name">A</div>
+        <button class="btn btn-sm btn-outline" id="nav-logout-btn" aria-label="Sign Out">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       View 1: Landing Page
+       ========================================== -->
+  <main class="view-section" id="view-landing">
+    <div class="container-inner">
+      
+      <!-- Hero -->
+      <section class="hero-layout">
+        <div class="hero-text">
+          <h1>Modern Care for Your <span>Best Friends</span></h1>
+          <p>Book instant vet appointments, manage medical treatment histories, and order premium feeds and supplements for your pets. All in one simple, elegant interface.</p>
+          <div class="hero-ctas">
+            <button class="btn btn-primary" onclick="PaxoAuth.showLoginModal()">Get Started 🐾</button>
+            <a href="#/customer/store" class="btn btn-outline">Browse Pet Store 🛍️</a>
+          </div>
+        </div>
+        <div class="hero-illustration">
+          <div class="main-illustration-card">
+            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=400" alt="Dog Bruno Hero image">
+            <h3>Hi, I'm Bruno! 🐶</h3>
+            <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">Registered under Aryan Sharma's family profile</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="features-section">
+        <div class="landing-section-title">
+          <h2>Our Care Offerings</h2>
+          <p>Everything you need to keep your furry family healthy and happy</p>
+        </div>
+        <div class="features-grid">
+          <div class="glass-card feature-card">
+            <div class="feature-icon">📅</div>
+            <h3>Smart Appointments</h3>
+            <p>Select doctor availability slots on an interactive calendar. Live approval alerts.</p>
+          </div>
+          <div class="glass-card feature-card">
+            <div class="feature-icon">🏥</div>
+            <h3>Treatment Timelines</h3>
+            <p>Access diagnoses, medication prescription logs, and notes published by vets.</p>
+          </div>
+          <div class="glass-card feature-card">
+            <div class="feature-icon">🐶</div>
+            <h3>Multi-Pet Profiles</h3>
+            <p>Register multiple pets with individual weights, dob, and photo registries.</p>
+          </div>
+          <div class="glass-card feature-card">
+            <div class="feature-icon">🛒</div>
+            <h3>Premium Store</h3>
+            <p>Shop for customized nutrition plans, grooming kits, and check out instantly.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="testimonials-section">
+        <div class="landing-section-title">
+          <h2>Owner Testimonials</h2>
+          <p>What our clients say about PaxoVet Noida Care</p>
+        </div>
+        <div class="testimonials-grid">
+          <div class="glass-card testimonial-card">
+            <p>"Adding multiple pets is so seamless. I can manage vaccines for both Bruno and Milo, and book slots in just two clicks. Auto-fills my details perfectly!"</p>
+            <div class="testimonial-user">
+              <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=100" alt="Aryan Sharma testimonial image">
+              <div>
+                <h4>Aryan Sharma</h4>
+                <span>Dog & Cat Owner</span>
+              </div>
+            </div>
+          </div>
+          <div class="glass-card testimonial-card">
+            <p>"The treatment records timeline is exceptionally useful. Being able to export prescriptions directly to my WhatsApp is a life saver."</p>
+            <div class="testimonial-user">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" alt="Riya Patel testimonial image">
+              <div>
+                <h4>Riya Sen</h4>
+                <span>Persian Cat Owner</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="landing-footer">
+        <p>© 2026 PaxoVet Clinic & E-Commerce Inc. Designed with Outfit HSL Glassmorphism. All rights reserved.</p>
+      </footer>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       View 2: Customer Portal Dashboard
+       ========================================== -->
+  <div class="view-section" id="view-customer-dashboard" style="display: none;">
+    <div class="container-inner">
+      
+      <div class="dashboard-layout">
+        <!-- Sidebar Tabs buttons -->
+        <aside class="dashboard-sidebar" aria-label="Customer Actions">
+          <button class="customer-tab-btn active" data-tab="pets" onclick="window.location.hash = '#/customer/pets'">
+            <span>🐶</span> My Pets
+          </button>
+          <button class="customer-tab-btn" data-tab="bookings" onclick="window.location.hash = '#/customer/bookings'">
+            <span>📅</span> Book Vet Slot
+          </button>
+          <button class="customer-tab-btn" data-tab="history" onclick="window.location.hash = '#/customer/history'">
+            <span>📄</span> Treatment Logs
+          </button>
+          <button class="customer-tab-btn" data-tab="store" onclick="window.location.hash = '#/customer/store'">
+            <span>🛍️</span> Pet Store
+          </button>
+          <button class="customer-tab-btn" style="margin-top: 24px; color: var(--secondary);" onclick="PaxoStore.toggleCart(true)">
+            <span>🛒</span> View Cart <span id="cart-count-badge" class="badge badge-info" style="margin-left: auto;">0</span>
+          </button>
+        </aside>
+
+        <!-- Sub-View Contents Card -->
+        <main class="glass-card dashboard-content-card" aria-label="Tab View Details">
+          
+          <!-- Tab 2.1: My Pets -->
+          <div class="customer-tab-content" id="tab-pets">
+            <div class="tab-header">
+              <h3>Furry Family Profiles 🐾</h3>
+              <button class="btn btn-primary btn-sm" onclick="PaxoCustomer.openPetModal()">+ Add Pet Profile</button>
+            </div>
+            <div class="pets-grid" id="pets-grid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Tab 2.2: Appointment Booking -->
+          <div class="customer-tab-content" id="tab-bookings" style="display: none;">
+            <div class="tab-header">
+              <h3>Schedule Consultation 📅</h3>
+            </div>
+            
+            <div class="booking-tab-layout">
+              <div>
+                <!-- Date selector -->
+                <div class="calendar-dates-scroller">
+                  <span class="sec-lbl">Select Date</span>
+                  <div class="calendar-dates-row" id="calendar-dates-row">
+                    <!-- Rendered via JS -->
+                  </div>
+                </div>
+
+                <!-- Time slot grid selector -->
+                <div style="margin-bottom: 24px;">
+                  <span class="sec-lbl">Select Available Time Slot</span>
+                  <div class="booking-slots-grid" id="booking-slots-grid">
+                    <!-- Rendered via JS -->
+                  </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="PaxoCustomer.openBookingModal()">Book Appointment Slot</button>
+              </div>
+
+              <!-- List of current bookings -->
+              <div>
+                <span class="sec-lbl">Scheduled Visits</span>
+                <div class="bookings-list" id="bookings-list" style="margin-top: 12px;">
+                  <!-- Rendered via JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2.3: Medical History prescriptions -->
+          <div class="customer-tab-content" id="tab-history" style="display: none;">
+            <div class="tab-header">
+              <h3>Veterinary Treatment Timeline 🏥</h3>
+            </div>
+            <div class="history-timeline" id="history-timeline">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Tab 2.4: Shop E-Store -->
+          <div class="customer-tab-content" id="tab-store" style="display: none;">
+            <div class="tab-header">
+              <h3>PaxoVet Nutrition & Accessory Store 🛍️</h3>
+            </div>
+            <!-- Category buttons -->
+            <div class="store-categories-bar">
+              <button class="store-category-btn active" onclick="PaxoStore.selectCategory('all', this)">All Items</button>
+              <button class="store-category-btn" onclick="PaxoStore.selectCategory('feed', this)">Nutrition & Food</button>
+              <button class="store-category-btn" onclick="PaxoStore.selectCategory('accessories', this)">Accessories</button>
+              <button class="store-category-btn" onclick="PaxoStore.selectCategory('medicine', this)">Medicines (In-Clinic Only)</button>
+            </div>
+            <div class="store-catalog-grid" id="store-catalog-grid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+        </main>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================
+       View 3: Admin Portal Dashboard
+       ========================================== -->
+  <main class="view-section" id="view-admin-dashboard" style="display: none;">
+    <div class="container-inner">
+      
+      <div class="tab-header">
+        <div>
+          <h3>Clinic Control Dashboard 🏢</h3>
+          <span style="font-size: 13px; color: var(--text-muted);">PaxoVet Noida Clinic Administration Panel</span>
+        </div>
+      </div>
+
+      <!-- Live metrics counters (8 KPI Cards) -->
+      <section class="admin-stats-row" aria-label="Operational stats" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 16px; margin-bottom: 24px;">
+        <div class="admin-stat-card">
+          <h4>Total Revenue</h4>
+          <span class="stat-val" id="admin-stat-revenue" style="font-size: 24px;">₹0</span>
+        </div>
+        <div class="admin-stat-card">
+          <h4>Customers</h4>
+          <span class="stat-val" id="admin-stat-customers" style="color: var(--secondary); font-size: 24px;">0</span>
+        </div>
+        <div class="admin-stat-card">
+          <h4>Pets Reg</h4>
+          <span class="stat-val" id="admin-stat-pets" style="color: var(--success); font-size: 24px;">0</span>
+        </div>
+        <div class="admin-stat-card">
+          <h4>Pending Appts</h4>
+          <span class="stat-val" id="admin-stat-pending" style="color: var(--warning); font-size: 24px;">0</span>
+        </div>
+        <div class="admin-stat-card">
+          <h4>Approved</h4>
+          <span class="stat-val" id="admin-stat-approved" style="color: var(--secondary); font-size: 24px;">0</span>
+        </div>
+        <div class="admin-stat-card">
+          <h4>Completed</h4>
+          <span class="stat-val" id="admin-stat-completed" style="color: var(--success); font-size: 24px;">0</span>
+        </div>
+        <div class="admin-stat-card">
+          <h4>Total Orders</h4>
+          <span class="stat-val" id="admin-stat-orders" style="font-size: 24px;">0</span>
+        </div>
+        <div class="admin-stat-card">
+          <h4>Low Inventory</h4>
+          <span class="stat-val" id="admin-stat-stock" style="color: var(--accent); font-size: 24px;">0</span>
+        </div>
+      </section>
+
+      <!-- Admin Navigation Sub-Tabs bar -->
+      <div class="admin-tabs-bar" style="display: flex; gap: 8px; margin-bottom: 32px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; overflow-x: auto; white-space: nowrap;">
+        <button class="admin-tab-btn active" onclick="PaxoAdmin.selectTab('dashboard', this)">
+          <span>📊</span> Dashboard Overview
+        </button>
+        <button class="admin-tab-btn" onclick="PaxoAdmin.selectTab('slots', this)">
+          <span>📅</span> Slot timings Manager
+        </button>
+        <button class="admin-tab-btn" onclick="PaxoAdmin.selectTab('appointments', this)">
+          <span>🐶</span> Appointments approvals
+        </button>
+        <button class="admin-tab-btn" onclick="PaxoAdmin.selectTab('products', this)">
+          <span>🛍️</span> Store Products
+        </button>
+        <button class="admin-tab-btn" onclick="PaxoAdmin.selectTab('orders', this)">
+          <span>📦</span> Customer Orders
+        </button>
+        <button class="admin-tab-btn" onclick="PaxoAdmin.selectTab('payments', this)">
+          <span>💳</span> Payment Center
+        </button>
+      </div>
+
+      <!-- Tab 3.1: Dashboard Overview -->
+      <div class="admin-tab-content" id="admin-tab-dashboard">
+        <div class="admin-layout-grid">
+          <!-- Left Column: Analytical Charts -->
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="glass-card">
+              <h4>Revenue trend (Last 7 Days)</h4>
+              <div id="revenue-trend-chart" style="height: 200px; margin-top: 16px;">
+                <!-- SVG Chart Rendered dynamically -->
+              </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 20px;">
+              <div class="glass-card">
+                <h4>Appointment status</h4>
+                <div id="appt-trend-chart" style="margin-top: 16px;">
+                  <!-- Dynamically Rendered -->
+                </div>
+              </div>
+              <div class="glass-card">
+                <h4>Best selling products</h4>
+                <div id="prod-sales-chart" style="margin-top: 16px;">
+                  <!-- Dynamically Rendered -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Recent activities log & Low stock warnings -->
+          <div>
+            <div class="glass-card" style="margin-bottom: 24px;">
+              <h4>Recent Activity Log</h4>
+              <ul id="admin-activity-feed" style="list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 12px;">
+                <!-- Rendered dynamically -->
+              </ul>
+            </div>
+            
+            <div class="glass-card stock-alerts-card">
+              <h4>Low stock inventory warnings</h4>
+              <ul class="admin-stock-alerts-list" id="admin-stock-alerts-list" style="margin-top: 16px;">
+                <!-- Rendered dynamically -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3.2: Slot timings Manager -->
+      <div class="admin-tab-content" id="admin-tab-slots" style="display: none;">
+        <div class="admin-layout-grid">
+          <!-- Calendar Matrix Scroller & Daily Schedule Slots list -->
+          <div>
+            <span class="sec-lbl">Select Scheduler Date</span>
+            <div class="calendar-dates-scroller" style="margin-top: 12px; margin-bottom: 24px;">
+              <div class="calendar-dates-row" id="admin-slots-dates-row">
+                <!-- Seeding dynamically -->
+              </div>
+            </div>
+
+            <span class="sec-lbl">Daily Schedule slots</span>
+            <div id="admin-slots-list" style="margin-top: 12px;">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Bulk Slots Creator & Single Open Slot forms -->
+          <div>
+            <!-- Bulk Slots form -->
+            <div class="glass-card" style="margin-bottom: 24px;">
+              <h4>Bulk Create open timings</h4>
+              <form id="admin-bulk-slots-form" style="margin-top: 16px;" onsubmit="PaxoAdmin.bulkCreateSlots(event)">
+                <div class="form-control-row">
+                  <div class="form-group">
+                    <label for="admin-bulk-start-date">Start Date</label>
+                    <input type="date" id="admin-bulk-start-date" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="admin-bulk-end-date">End Date</label>
+                    <input type="date" id="admin-bulk-end-date" class="form-control" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="admin-bulk-max-bookings">Max Bookings per slot</label>
+                  <input type="number" id="admin-bulk-max-bookings" class="form-control" min="1" value="2" required>
+                </div>
+                <div class="form-group">
+                  <label>Select standard timeslots to open</label>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px;">
+                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--text-main);">
+                      <input type="checkbox" class="admin-bulk-time-checkbox" value="09:30 AM" data-end="10:30 AM" checked> 09:30 - 10:30 AM
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--text-main);">
+                      <input type="checkbox" class="admin-bulk-time-checkbox" value="11:00 AM" data-end="12:00 PM" checked> 11:00 - 12:00 PM
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--text-main);">
+                      <input type="checkbox" class="admin-bulk-time-checkbox" value="12:30 PM" data-end="01:30 PM"> 12:30 - 01:30 PM
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--text-main);">
+                      <input type="checkbox" class="admin-bulk-time-checkbox" value="03:00 PM" data-end="04:00 PM" checked> 03:00 - 04:00 PM
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--text-main);">
+                      <input type="checkbox" class="admin-bulk-time-checkbox" value="04:30 PM" data-end="05:30 PM"> 04:30 - 05:30 PM
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--text-main);">
+                      <input type="checkbox" class="admin-bulk-time-checkbox" value="06:00 PM" data-end="07:00 PM"> 06:00 - 07:00 PM
+                    </label>
+                  </div>
+                </div>
+                <button class="btn btn-primary" type="submit" style="width: 100%;">Bulk Generate Slots</button>
+              </form>
+            </div>
+
+            <!-- Single Open Slot form -->
+            <div class="glass-card">
+              <h4>Open Single specific Timeslot</h4>
+              <form id="admin-slot-form" style="margin-top: 16px;">
+                <div class="form-group">
+                  <label for="admin-slot-date">Consultation Date</label>
+                  <input type="date" id="admin-slot-date" class="form-control" required>
+                </div>
+                <div class="form-control-row">
+                  <div class="form-group">
+                    <label for="admin-slot-start-time">Start Time</label>
+                    <input type="text" id="admin-slot-start-time" class="form-control" placeholder="e.g. 10:00 AM" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="admin-slot-end-time">End Time</label>
+                    <input type="text" id="admin-slot-end-time" class="form-control" placeholder="e.g. 11:00 AM" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="admin-slot-max-bookings">Max Bookings</label>
+                  <input type="number" id="admin-slot-max-bookings" class="form-control" min="1" value="1" required>
+                </div>
+                <button class="btn btn-primary" type="submit" style="width: 100%;">Create Open Slot</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3.3: Appointments approvals -->
+      <div class="admin-tab-content" id="admin-tab-appointments" style="display: none;">
+        <div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; align-items: center;">
+          <!-- Filter buttons -->
+          <div style="display: flex; gap: 8px;">
+            <button class="admin-appt-filter-btn active" data-filter="all" onclick="document.querySelectorAll('.admin-appt-filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); PaxoAdmin.renderAppointments();" style="padding: 8px 16px; border-radius: 20px; font-weight: bold; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: var(--text-muted); cursor: pointer;">All Scheduled</button>
+            <button class="admin-appt-filter-btn" data-filter="today" onclick="document.querySelectorAll('.admin-appt-filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); PaxoAdmin.renderAppointments();" style="padding: 8px 16px; border-radius: 20px; font-weight: bold; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: var(--text-muted); cursor: pointer;">Today Only</button>
+            <button class="admin-appt-filter-btn" data-filter="upcoming" onclick="document.querySelectorAll('.admin-appt-filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); PaxoAdmin.renderAppointments();" style="padding: 8px 16px; border-radius: 20px; font-weight: bold; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: var(--text-muted); cursor: pointer;">Upcoming</button>
+            <button class="admin-appt-filter-btn" data-filter="completed" onclick="document.querySelectorAll('.admin-appt-filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); PaxoAdmin.renderAppointments();" style="padding: 8px 16px; border-radius: 20px; font-weight: bold; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: var(--text-muted); cursor: pointer;">Completed</button>
+          </div>
+          
+          <!-- Search box -->
+          <div style="flex-grow: 1; max-width: 350px;">
+            <input type="text" id="admin-appt-search" class="form-control" placeholder="Search by pet name or owner email..." oninput="PaxoAdmin.renderAppointments()">
+          </div>
+        </div>
+
+        <!-- Bookings list -->
+        <span class="sec-lbl">Active Scheduled Appointments Approvals</span>
+        <div class="admin-bookings-list" id="admin-bookings-list" style="margin-top: 12px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px;">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Tab 3.4: Store Products Inventory -->
+      <div class="admin-tab-content" id="admin-tab-products" style="display: none;">
+        <div class="admin-layout-grid">
+          <!-- Products Catalog list -->
+          <div>
+            <span class="sec-lbl">Active Store Products Catalog</span>
+            <div id="admin-products-list" class="admin-products-list" style="margin-top: 12px; display: flex; flex-direction: column; gap: 16px;">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Add/Edit Product form -->
+          <div>
+            <div class="glass-card">
+              <h4 id="admin-prod-form-title">Add New Product to Store</h4>
+              <form id="admin-product-form" style="margin-top: 16px;">
+                <div class="form-group">
+                  <label for="admin-prod-name">Product Name</label>
+                  <input type="text" id="admin-prod-name" class="form-control" placeholder="e.g. Premium Dog Chew Toys" required>
+                </div>
+                <div class="form-control-row">
+                  <div class="form-group">
+                    <label for="admin-prod-price">Base Price (₹)</label>
+                    <input type="number" id="admin-prod-price" step="1" min="1" class="form-control" placeholder="499" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="admin-prod-discount">Discount Percentage (%)</label>
+                    <input type="number" id="admin-prod-discount" min="0" max="99" class="form-control" placeholder="0" value="0">
+                  </div>
+                </div>
+                <div class="form-control-row">
+                  <div class="form-group">
+                    <label for="admin-prod-stock">Initial Stock Qty</label>
+                    <input type="number" id="admin-prod-stock" min="0" class="form-control" placeholder="10" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="admin-prod-category">Category</label>
+                    <select id="admin-prod-category" class="form-control">
+                      <option value="Food">Food 🍖</option>
+                      <option value="Accessories">Accessories 🧸</option>
+                      <option value="Grooming">Grooming ✂️</option>
+                      <option value="Healthcare">Healthcare 💊</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="admin-prod-image">Product Image URL</label>
+                  <select id="admin-prod-image" class="form-control">
+                    <option value="https://images.unsplash.com/photo-1589722244358-f0ec9f82d2b5?auto=format&fit=crop&q=80&w=400">Royal Canin Food 🍖</option>
+                    <option value="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&q=80&w=400">Premium Collar 🧸</option>
+                    <option value="https://images.unsplash.com/photo-1548247416-ec66f4900b2e?auto=format&fit=crop&q=80&w=400">Interactive Laser 🐱</option>
+                    <option value="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&q=80&w=400">Multi-Vitamin Bottle 💊</option>
+                    <option value="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=400">Grooming Aloe Shampoo 🧴</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="admin-prod-desc">Description</label>
+                  <textarea id="admin-prod-desc" class="form-control" style="height: 80px;" placeholder="Brief product description for the storefront page..."></textarea>
+                </div>
+                <button class="btn btn-primary" type="submit" style="width: 100%;">Save Product catalog</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3.5: Customer Orders -->
+      <div class="admin-tab-content" id="admin-tab-orders" style="display: none;">
+        <span class="sec-lbl">Completed Customer Checkout Orders</span>
+        <div id="admin-orders-list" style="margin-top: 12px; display: flex; flex-direction: column; gap: 16px;">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Tab 3.6: Payment Center -->
+      <div class="admin-tab-content" id="admin-tab-payments" style="display: none;">
+        <!-- Payment stats metrics row -->
+        <section class="admin-stats-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-bottom: 32px;">
+          <div class="admin-stat-card" style="border-left: 4px solid var(--success);">
+            <h4>Total Payments Received</h4>
+            <span class="stat-val" id="payment-stat-received" style="color: var(--success);">₹0</span>
+          </div>
+          <div class="admin-stat-card" style="border-left: 4px solid var(--secondary);">
+            <h4>Pending Payments</h4>
+            <span class="stat-val" id="payment-stat-pending" style="color: var(--secondary);">₹0</span>
+          </div>
+          <div class="admin-stat-card" style="border-left: 4px solid var(--accent);">
+            <h4>Failed Checkout Transactions</h4>
+            <span class="stat-val" id="payment-stat-failed" style="color: var(--accent);">₹0</span>
+          </div>
+          <div class="admin-stat-card" style="border-left: 4px solid var(--warning);">
+            <h4>Refunded History Totals</h4>
+            <span class="stat-val" id="payment-stat-refunded" style="color: var(--warning);">₹0</span>
+          </div>
+        </section>
+
+        <!-- Payments Ledger Table & Reports -->
+        <div class="admin-layout-grid">
+          <!-- Table ledger -->
+          <div class="glass-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+              <h4 style="margin: 0;">Payment Transaction logs Ledger</h4>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-sm btn-primary" onclick="PaxoAdmin.exportCSV()">Export CSV 📤</button>
+                <button class="btn btn-sm btn-outline" onclick="window.print()">Export Report PDF 📄</button>
+              </div>
+            </div>
+            
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--border-color); color: var(--text-muted); font-size: 12px;">
+                    <th style="padding: 12px;">Transaction ID</th>
+                    <th style="padding: 12px;">Order ID</th>
+                    <th style="padding: 12px;">Date</th>
+                    <th style="padding: 12px;">Amount</th>
+                    <th style="padding: 12px;">Method</th>
+                    <th style="padding: 12px;">Status</th>
+                    <th style="padding: 12px;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-payments-table-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Reports checkout breakdowns -->
+          <div>
+            <div class="glass-card">
+              <h4>Sales payments breakdown</h4>
+              <div id="payment-report-breakdown" style="margin-top: 16px; display: flex; flex-direction: column; gap: 12px;">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </main>
+
+  <!-- ==========================================
+       Modals: Onboarding Authentication
+       ========================================== -->
+  <div class="modal-overlay" id="login-modal" aria-modal="true" role="dialog">
+    <div class="glass-card modal-card">
+      <div class="modal-header">
+        <h3 style="margin: 0;">Sign In / Sign Up 🐾</h3>
+        <span class="modal-close-btn" onclick="PaxoAuth.hideLoginModal()" role="button" tabindex="0">✕</span>
+      </div>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-email">Email Address</label>
+          <input type="email" id="login-email" class="form-control" placeholder="aryan@customer.com or admin@paxovet.com" required>
+        </div>
+        
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">
+          *Fill in details below to register a new account. Admin role auto-triggers if email includes "admin".
+        </p>
+
+        <div class="form-group">
+          <label for="login-name">Your Name (Optional)</label>
+          <input type="text" id="login-name" class="form-control" placeholder="Aryan Sharma">
+        </div>
+        <div class="form-group">
+          <label for="login-phone">Phone Number (Optional)</label>
+          <input type="tel" id="login-phone" class="form-control" placeholder="+91 98765 43210">
+        </div>
+
+        <button class="btn btn-primary" type="submit" style="width: 100%;">Enter App Console</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       Modals: Pet profiles creator
+       ========================================== -->
+  <div class="modal-overlay" id="pet-modal" aria-modal="true" role="dialog">
+    <div class="glass-card modal-card">
+      <div class="modal-header">
+        <h3 id="pet-modal-title" style="margin: 0;">Register New Pet</h3>
+        <span class="modal-close-btn" onclick="PaxoCustomer.hidePetModal()" role="button" tabindex="0">✕</span>
+      </div>
+      <form id="pet-form">
+        <div class="form-group">
+          <label for="pet-name">Pet Name</label>
+          <input type="text" id="pet-name" class="form-control" placeholder="Bruno" required>
+        </div>
+
+        <div class="form-control-row">
+          <div class="form-group">
+            <label for="pet-species">Pet Species</label>
+            <select id="pet-species" class="form-control">
+              <option value="Dog">Dog 🐶</option>
+              <option value="Cat">Cat 🐱</option>
+              <option value="Bird">Bird 🦜</option>
+              <option value="Rabbit">Rabbit 🐰</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="pet-breed">Breed description</label>
+            <input type="text" id="pet-breed" class="form-control" placeholder="Golden Retriever" required>
+          </div>
+        </div>
+
+        <div class="form-control-row">
+          <div class="form-group">
+            <label for="pet-age">Age (in years)</label>
+            <input type="number" id="pet-age" step="0.1" class="form-control" placeholder="2.5" required>
+          </div>
+          <div class="form-group">
+            <label for="pet-gender">Gender</label>
+            <select id="pet-gender" class="form-control">
+              <option value="Male">Male ♂</option>
+              <option value="Female">Female ♀</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-control-row">
+          <div class="form-group">
+            <label for="pet-weight">Weight (in kg)</label>
+            <input type="number" id="pet-weight" step="0.1" class="form-control" placeholder="28.5" required>
+          </div>
+          <div class="form-group">
+            <label for="pet-vaccination">Vaccination Status</label>
+            <input type="text" id="pet-vaccination" class="form-control" placeholder="Fully Vaccinated" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="pet-photo-select">Choose Avatar Photo</label>
+          <select id="pet-photo-select" class="form-control">
+            <option value="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&q=80&w=400">Golden Retriever 🐶</option>
+            <option value="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=400">Persian Cat 🐱</option>
+            <option value="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=400">Happy Beagle 🐶</option>
+            <option value="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&q=80&w=400">Puppy 🐶</option>
+            <option value="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&q=80&w=400">Ginger Cat 🐱</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="pet-notes">Medical Notes / Diet requirements</label>
+          <textarea id="pet-notes" class="form-control" style="height: 80px;" placeholder="Sensitive stomach, loves playing fetch."></textarea>
+        </div>
+
+        <button class="btn btn-primary" type="submit" style="width: 100%;">Save Pet Profile</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       Modals: Bookings slots selector confirmation
+       ========================================== -->
+  <div class="modal-overlay" id="booking-modal" aria-modal="true" role="dialog">
+    <div class="glass-card modal-card">
+      <div class="modal-header">
+        <h3 style="margin: 0;">Confirm Appointment Slot</h3>
+        <span class="modal-close-btn" onclick="PaxoCustomer.hideBookingModal()" role="button" tabindex="0">✕</span>
+      </div>
+      <form id="booking-form">
+        <div class="form-group">
+          <span class="sec-lbl">Selected Slot</span>
+          <p id="booking-time-preview" style="font-size: 15px; margin-top: 6px; padding: 12px; background: rgba(15,23,42,0.4); border-radius: var(--rounded-sm);">
+            No slot selected.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="booking-pet-select">Select Patient Pet</label>
+          <select id="booking-pet-select" class="form-control">
+            <!-- Rendered via JS -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="booking-reason">Reason for Visit</label>
+          <textarea id="booking-reason" class="form-control" style="height: 80px;" placeholder="Regular vaccination booster or fever symptoms checkup..." required></textarea>
+        </div>
+
+        <button class="btn btn-primary" type="submit" style="width: 100%;">Confirm Vet Booking</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       Modals: Admin Treatment prescriptions recorder
+       ========================================== -->
+  <div class="modal-overlay" id="treatment-modal" aria-modal="true" role="dialog">
+    <div class="glass-card modal-card" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 id="treatment-modal-title" style="margin: 0;">Record Prescription Details</h3>
+        <span class="modal-close-btn" onclick="PaxoAdmin.hideTreatmentModal()" role="button" tabindex="0">✕</span>
+      </div>
+      <form id="admin-treatment-form">
+        <div class="form-group">
+          <label for="admin-diagnosis">Diagnosis description</label>
+          <input type="text" id="admin-diagnosis" class="form-control" placeholder="Viral fever checkup, anti-rabies booster" required>
+        </div>
+
+        <div style="border: 1px solid var(--border-color); border-radius: var(--rounded-md); padding: 16px; margin-bottom: 20px; background: rgba(15,23,42,0.4);">
+          <label style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 8px;">
+            Compile Medications Plan
+          </label>
+          
+          <div class="form-group">
+            <input type="text" id="admin-med-name" class="form-control" placeholder="Multi-Vitamin Syrup, Paracetamol 100mg" style="margin-bottom: 8px;">
+            <div style="display: flex; gap: 8px;">
+              <input type="text" id="admin-med-dosage" class="form-control" placeholder="5ml daily, 1 tablet twice a day" style="flex-grow: 1;">
+              <input type="number" id="admin-med-days" class="form-control" placeholder="5" style="width: 80px;" value="5">
+            </div>
+          </div>
+          <button class="btn btn-sm btn-outline" type="button" onclick="PaxoAdmin.addMedicine()">+ Add Medicine</button>
+
+          <div id="admin-meds-compiler-list" style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="admin-treatment-notes">Special Doctor Notes</label>
+          <textarea id="admin-treatment-notes" class="form-control" style="height: 80px;" placeholder="Keep pet hydrated, revisit in 5 days if fever persists."></textarea>
+        </div>
+
+        <button class="btn btn-primary" type="submit" style="width: 100%;">Record & Publish Record</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       Modals: Simulated Razorpay Payment sheet
+       ========================================== -->
+  <div class="modal-overlay" id="payment-modal" aria-modal="true" role="dialog">
+    <div class="glass-card modal-card" style="max-width: 400px; padding: 0; border: 1px solid #2563EB;">
+      <div class="razorpay-header">
+        <div class="razorpay-logo">
+          <span>💳</span> Razorpay <span>Checkout</span>
+        </div>
+        <span class="modal-close-btn" onclick="PaxoStore.hidePaymentModal()" role="button" tabindex="0" style="color: #FFF;">✕</span>
+      </div>
+      <div class="razorpay-body">
+        <div class="razorpay-amount-box">
+          <span>Amount Payable</span>
+          <h3 id="payment-total-amount">₹0</h3>
+        </div>
+        
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 24px;">
+          Choose transaction mock method to complete checkout
+        </p>
+
+        <div class="payment-options">
+          <button class="payment-btn" onclick="PaxoStore.processPayment(true, 'UPI')">
+            <span>🏦</span> UPI / Net Banking (Simulate Success)
+          </button>
+          <button class="payment-btn" onclick="PaxoStore.processPayment(true, 'Card')">
+            <span>💳</span> Credit/Debit Card (Simulate Success)
+          </button>
+          <button class="payment-btn" style="border-color: rgba(239, 68, 68, 0.4); color: var(--accent);" onclick="PaxoStore.processPayment(false, 'Razorpay')">
+            <span>❌</span> Cancel Transaction (Simulate Fail)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       Modals: Reschedule Appointment Modal
+       ========================================== -->
+  <div class="modal-overlay" id="reschedule-modal" aria-modal="true" role="dialog">
+    <div class="glass-card modal-card" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 style="margin: 0;">Reschedule Appointment 📅</h3>
+        <span class="modal-close-btn" onclick="PaxoAdmin.hideRescheduleModal()" role="button" tabindex="0">✕</span>
+      </div>
+      <form id="reschedule-form" onsubmit="PaxoAdmin.submitReschedule(event)">
+        <div class="form-group">
+          <label for="reschedule-slot-select">Select New Open Timeslot</label>
+          <select id="reschedule-slot-select" class="form-control" required>
+            <!-- Rendered dynamically -->
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit" style="width: 100%;">Confirm Reschedule</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       Modals: Invoice Receipt Modal
+       ========================================== -->
+  <div class="modal-overlay" id="invoice-modal" aria-modal="true" role="dialog">
+    <div class="glass-card modal-card" style="max-width: 450px;">
+      <div class="modal-header">
+        <h3 style="margin: 0;">Order Invoice 📄</h3>
+        <span class="modal-close-btn" onclick="document.getElementById('invoice-modal').style.display='none'" role="button" tabindex="0">✕</span>
+      </div>
+      <div id="invoice-print-area">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <h4 style="color: var(--secondary); margin-bottom: 4px;">🐾 PaxoVet Noida</h4>
+          <span style="font-size: 12px; color: var(--text-muted);">Premium Pet Healthcare Clinic & Store</span>
+        </div>
+        
+        <div style="border-bottom: 1px dashed var(--border-color); padding-bottom: 12px; margin-bottom: 16px; font-size: 13px; display: flex; flex-direction: column; gap: 4px;">
+          <span id="invoice-date-lbl">Date: </span>
+          <span>Order ID: <span id="invoice-ref-lbl" style="font-family: monospace; font-weight: 600; color: var(--secondary);"></span></span>
+          <span>Customer: <span id="invoice-cust-lbl" style="font-weight: 600;"></span></span>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <span class="sec-lbl">Purchased Items</span>
+          <div id="invoice-items-list" style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px;">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid var(--border-color); padding-top: 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <span style="font-weight: bold;">Grand Total</span>
+          <span id="invoice-total-lbl" style="font-size: 20px; font-weight: 800; color: var(--success);">₹0</span>
+        </div>
+      </div>
+      
+      <div style="display: flex; gap: 12px;">
+        <button class="btn btn-primary" onclick="window.print()" style="flex: 1;">Print / Save PDF</button>
+        <button class="btn btn-outline" onclick="document.getElementById('invoice-modal').style.display='none'" style="flex: 1;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       Slide-out Notifications Drawer
+       ========================================== -->
+  <aside class="notif-drawer animate-drawer" id="notif-drawer" aria-label="Alert Notifications">
+    <div class="cart-drawer-header">
+      <h3 style="margin: 0; font-size: 18px;">Alert Notifications 🔔</h3>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 11px; cursor: pointer; color: var(--secondary); font-weight: bold;" onclick="PaxoAdmin.clearAllNotifications()">Clear All</span>
+        <span class="modal-close-btn" onclick="PaxoAdmin.toggleNotificationDrawer(false)" role="button" tabindex="0">✕</span>
+      </div>
+    </div>
+    
+    <div class="cart-items-list" id="admin-notif-drawer-list" style="padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+      <!-- Rendered via JS -->
+    </div>
+  </aside>
+
+  <!-- ==========================================
+       Slide-out Cart Drawer
+       ========================================== -->
+  <div class="cart-overlay" id="cart-overlay" onclick="PaxoStore.toggleCart(false)"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping Cart">
+    <div class="cart-drawer-header">
+      <h3 style="margin: 0;">Shopping Cart 🛒</h3>
+      <span class="modal-close-btn" onclick="PaxoStore.toggleCart(false)" role="button" tabindex="0">✕</span>
+    </div>
+    
+    <div class="cart-items-list" id="cart-items-list">
+      <!-- Rendered via JS -->
+    </div>
+
+    <div class="cart-drawer-footer">
+      <div class="cart-total-row">
+        <span>Subtotal</span>
+        <span id="cart-total-price">₹0</span>
+      </div>
+      <button class="btn btn-primary" style="width: 100%; padding: 14px;" onclick="PaxoStore.checkout()">
+        Proceed to Checkout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==========================================
+       Script Includes Orchestrations
+       ========================================== -->
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/customer.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
