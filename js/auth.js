@@ -1,3 +1,13 @@
+// ─── EmailJS OTP Config ───────────────────────────────
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // from EmailJS dashboard
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
+let _otpCode    = null;
+let _otpExpiry  = null;
+let _otpEmail   = null;
 // PaxoVet Authentication & Onboarding Manager
 const SESSION_KEY = 'paxovet_session';
 const LAST_EMAIL_KEY = 'paxovet_last_email';
