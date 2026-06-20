@@ -634,27 +634,30 @@
         <span class="modal-close-btn" onclick="PaxoAuth.hideLoginModal()" role="button" tabindex="0">✕</span>
       </div>
       <form id="login-form">
-  <!-- Step 1: Email -->
+  <!-- Step 1: Details -->
   <div id="otp-step-email">
     <div class="form-group">
-      <label for="login-email">Email Address</label>
-      <input type="email" id="login-email" class="form-control" placeholder="aryan@customer.com or admin@paxovet.com" required>
+      <label for="login-phone">Phone Number</label>
+      <input type="tel" id="login-phone" class="form-control" placeholder="98765 43210">
     </div>
+    <div class="form-group">
+      <label for="login-email">Email Address</label>
+      <input type="email" id="login-email" class="form-control" placeholder="you@example.com">
+    </div>
+    <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
+      * Enter phone <strong>or</strong> email — at least one required to receive OTP.
+    </p>
     <div class="form-group">
       <label for="login-name">Your Name (Optional)</label>
       <input type="text" id="login-name" class="form-control" placeholder="Aryan Sharma">
     </div>
-    <div class="form-group">
-      <label for="login-phone">Phone Number (Optional)</label>
-      <input type="tel" id="login-phone" class="form-control" placeholder="+91 98765 43210">
-    </div>
-    <button class="btn btn-primary" type="button" onclick="PaxoAuth.sendOTP()" style="width: 100%;" id="send-otp-btn">Send OTP to Email</button>
+    <button class="btn btn-primary" type="button" onclick="PaxoAuth.sendOTP()" id="send-otp-btn" style="width:100%;">Send OTP</button>
   </div>
 
   <!-- Step 2: OTP verify (hidden initially) -->
   <div id="otp-step-verify" style="display:none;">
     <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-      📧 OTP sent to <strong id="otp-sent-to"></strong>. Check your inbox.
+      OTP sent to <strong id="otp-sent-to"></strong>. Check your inbox/messages.
     </p>
     <div class="form-group">
       <label for="otp-input">Enter 6-digit OTP</label>
@@ -846,15 +849,10 @@
         </p>
 
         <div class="payment-options">
-          <button class="payment-btn" onclick="PaxoStore.processPayment(true, 'UPI')">
-            <span>🏦</span> UPI / Net Banking (Simulate Success)
-          </button>
-          <button class="payment-btn" onclick="PaxoStore.processPayment(true, 'Card')">
-            <span>💳</span> Credit/Debit Card (Simulate Success)
-          </button>
-          <button class="payment-btn" style="border-color: rgba(239, 68, 68, 0.4); color: var(--accent);" onclick="PaxoStore.processPayment(false, 'Razorpay')">
-            <span>❌</span> Cancel Transaction (Simulate Fail)
-          </button>
+  <button class="payment-btn" onclick="PaxoStore.openRazorpay()">
+    <span>💳</span> Pay Now with Razorpay
+  </button>
+</div>
         </div>
       </div>
     </div>
@@ -967,7 +965,7 @@
   <!-- ==========================================
        Script Includes Orchestrations
        ========================================== -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/auth.js"></script>
