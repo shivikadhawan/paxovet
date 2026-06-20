@@ -5,6 +5,47 @@ window.PaxoStore = {
   init: () => {
     PaxoStore.renderStore();
     PaxoStore.renderCart();
+    openRazorpay: () => {
+  const cart     = PaxoDB.get('cart');
+  const products = PaxoDB.get('products');
+  const user     = PaxoAuth.currentUser();
+
+  if (cart.length === 0) { PaxoUtils.toast('Your cart is empty.', 'error'); return; }
+
+  let total = 0;
+  cart.forEach(item => {
+    const prod = products.find(p => p.id === item.product_id);
+    if (prod) {
+      const finalPrice = prod.discount > 0 ? prod.price * (1 - prod.discount / 100) : prod.price;
+      total += finalPrice * item.qty;
+    }
+  });
+
+  const options = {
+    key:         'rzp_test_XXXXXXXXXX', // ← paste Razorpay test key
+    amount:      Math.round(total * 100),
+    currency:    'INR',
+    name:        'PaxoVet',
+    description: 'Pet Care Products & Services',
+    prefill: {
+      name:    user?.name  || '',
+      email:   user?.email || '',
+      contact: user?.phone || ''
+    },
+    theme: { color: '#2563EB' },
+    handler: function() {
+      PaxoStore.processPayment(true, 'Razorpay');
+    },
+    modal: {
+      ondismiss: function() {
+        PaxoUtils.toast('Payment cancelled.', 'info');
+      }
+    }
+  };
+
+  PaxoStore.hidePaymentModal();
+  new Razorpay(options).open();
+}
   },
 
   renderStore: () => {
