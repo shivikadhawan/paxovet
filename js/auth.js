@@ -152,7 +152,7 @@ function sendOTP() {
 
   emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
     to_email: email,
-    otp_code: _otpCode
+    passcode: _otpCode
   }).then(() => {
     document.getElementById('otp-step-email').style.display   = 'none';
     document.getElementById('otp-step-verify').style.display  = 'block';
