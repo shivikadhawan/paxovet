@@ -3,7 +3,9 @@ const EMAILJS_PUBLIC_KEY  = 'NfSOV1O5-QnE0Zvq3';   // from EmailJS dashboard
 const EMAILJS_SERVICE_ID  = 'service_yxinza2';
 const EMAILJS_TEMPLATE_ID = 'template_it69spp';
 
-emailjs.init(EMAILJS_PUBLIC_KEY);
+window.addEventListener('load', () => {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+});
 
 let _otpCode    = null;
 let _otpExpiry  = null;
