@@ -133,7 +133,62 @@ function hideLoginModal() {
     document.getElementById('login-phone').value = '';
   }
 }
+function sendOTP() {
+  const email = document.getElementById('login-email').value.trim();
+  if (!email || !email.includes('@')) {
+    PaxoUtils.toast('Please enter a valid email.', 'error');
+    return;
+  }
 
+  const btn = document.getElementById('send-otp-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  _otpCode   = Math.floor(100000 + Math.random() * 900000).toString();
+  _otpExpiry = Date.now() + 5 * 60 * 1000; // 5 min
+  _otpEmail  = email;
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    to_email: email,
+    otp_code: _otpCode
+  }).then(() => {
+    document.getElementById('otp-step-email').style.display   = 'none';
+    document.getElementById('otp-step-verify').style.display  = 'block';
+    document.getElementById('otp-sent-to').textContent        = email;
+    PaxoUtils.toast('OTP sent! Check your inbox.', 'success');
+  }).catch((err) => {
+    console.error('EmailJS error:', err);
+    PaxoUtils.toast('Failed to send OTP. Try again.', 'error');
+    btn.disabled    = false;
+    btn.textContent = 'Send OTP to Email';
+  });
+}
+
+function verifyOTP(enteredCode) {
+  if (!_otpCode || !_otpExpiry) {
+    PaxoUtils.toast('No OTP found. Please request again.', 'error');
+    return false;
+  }
+  if (Date.now() > _otpExpiry) {
+    PaxoUtils.toast('OTP expired. Please resend.', 'error');
+    _otpCode = null;
+    return false;
+  }
+  if (enteredCode !== _otpCode) {
+    PaxoUtils.toast('Wrong OTP. Try again.', 'error');
+    return false;
+  }
+  _otpCode = null; // Invalidate after use
+  return true;
+}
+
+function resendOTP() {
+  document.getElementById('otp-step-email').style.display  = 'block';
+  document.getElementById('otp-step-verify').style.display = 'none';
+  const btn = document.getElementById('send-otp-btn');
+  btn.disabled    = false;
+  btn.textContent = 'Send OTP to Email';
+}
 // Expose public API
 window.PaxoAuth = {
   currentUser: getCurrentUser,
@@ -141,5 +196,8 @@ window.PaxoAuth = {
   logout: logoutUser,
   updateUI: updateAuthUI,
   showLoginModal: showLoginModal,
-  hideLoginModal: hideLoginModal
+  hideLoginModal: hideLoginModal,
+  sendOTP: sendOTP,       // ← add these 3
+  verifyOTP: verifyOTP,
+  resendOTP: resendOTP
 };
